@@ -2,7 +2,7 @@
 
 Track actual verification per phase. Check off only after genuine tests are run.
 
-- [ ] **Phase 1: Project Setup**
+- [x] **Phase 1: Project Setup**
   - [x] Folder structure and configuration initialized.
   - [x] Node.js & Express server baseline scaffolded with healthcheck endpoint.
   - [x] Semantic HTML5, CSS3, and Vanilla JS UI wireframes created.
@@ -27,11 +27,11 @@ Track actual verification per phase. Check off only after genuine tests are run.
   - [x] Evidence register search, filter, sorting, and pagination verified.
   - [x] Access request, self-approval prevention, expiry, and revocation tested.
   - [x] PDF report generation with metadata, custody timeline, and signature status tested.
-- [ ] **Phase 6: UI & Accessibility Review**
-  - [ ] Purpose, Agency, Responsibility principles verified on all views.
-  - [ ] Visible focus indicators and keyboard accessibility verified.
-  - [ ] Statuses communicated via text/icon rather than color alone verified.
-  - [ ] Responsive design verified across mobile, tablet, and desktop breakpoints.
+- [x] **Phase 6: UI & Accessibility Review**
+  - [x] Purpose, Agency, Responsibility principles verified on all views.
+  - [x] Visible focus indicators and keyboard accessibility verified.
+  - [x] Statuses communicated via text/icon rather than color alone verified.
+  - [x] Responsive design verified across mobile, tablet, and desktop breakpoints.
 - [ ] **Phase 7: Comprehensive End-to-End Testing**
   - [ ] All roles tested against all endpoints.
   - [ ] Synthetic demo fixtures validated.
