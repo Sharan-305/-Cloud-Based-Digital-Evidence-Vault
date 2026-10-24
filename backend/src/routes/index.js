@@ -2,6 +2,7 @@ const express = require('express');
 const healthRoutes = require('./health.routes');
 const authRoutes = require('./auth.routes');
 const userRoutes = require('./user.routes');
+const evidenceRoutes = require('./evidence.routes');
 
 const router = express.Router();
 
@@ -9,9 +10,9 @@ const router = express.Router();
 router.use('/', healthRoutes);
 router.use('/auth', authRoutes);
 router.use('/users', userRoutes);
+router.use('/evidence', evidenceRoutes);
 
 // Placeholder endpoints returning standard 501 for remaining phases
-router.use('/evidence', (req, res) => res.status(501).json({ error: { message: 'Evidence module scheduled for Phase 3/4', code: 'NOT_IMPLEMENTED' } }));
 router.use('/access-requests', (req, res) => res.status(501).json({ error: { message: 'Access workflow scheduled for Phase 5', code: 'NOT_IMPLEMENTED' } }));
 router.use('/audit-logs', (req, res) => res.status(501).json({ error: { message: 'Audit log module scheduled for Phase 4/5', code: 'NOT_IMPLEMENTED' } }));
 router.use('/alerts', (req, res) => res.status(501).json({ error: { message: 'Alerts module scheduled for Phase 4/5', code: 'NOT_IMPLEMENTED' } }));

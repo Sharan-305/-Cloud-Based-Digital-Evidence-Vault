@@ -27,6 +27,7 @@ test('Health & Baseline API Verification Suite', async (t) => {
     const body = await res.json();
     assert.strictEqual(body.status, 'healthy');
     assert.strictEqual(body.subsystems.api, 'operational');
+    assert.strictEqual(body.subsystems.storageS3, 'operational');
     assert.ok(body.subsystems.database.includes('connected'));
     assert.strictEqual(typeof body.uptimeSeconds, 'number');
     assert.ok(body.timestamp);
@@ -41,8 +42,8 @@ test('Health & Baseline API Verification Suite', async (t) => {
     assert.ok(body.error.message.includes('/api/unmapped-endpoint'));
   });
 
-  await t.test('GET /api/evidence returns 501 for phase 3 endpoint', async () => {
-    const res = await fetch(`http://127.0.0.1:${testPort}/api/evidence`);
+  await t.test('GET /api/access-requests returns 501 for phase 5 endpoint', async () => {
+    const res = await fetch(`http://127.0.0.1:${testPort}/api/access-requests`);
     assert.strictEqual(res.status, 501);
 
     const body = await res.json();
@@ -62,7 +63,8 @@ test('Health & Baseline API Verification Suite', async (t) => {
     assert.ok(text.includes('Digital Evidence Vault'));
   });
 
-  await t.test('Close test HTTP server', (t, done) => {
-    server.close(done);
+  await t.test('Close test HTTP server and disconnect DB', async () => {
+    await new Promise((resolve) => server.close(resolve));
+    await disconnectDB();
   });
 });

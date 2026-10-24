@@ -7,11 +7,14 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "test": "node --test tests/health.test.js tests/auth.test.js",
+    "test": "node tests/run-all.js",
     "lint": "node -e \"const fs = require('fs'), path = require('path'), cp = require('child_process'); function walk(d) { fs.readdirSync(d).forEach(f => { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) walk(p); else if (p.endsWith('.js')) { cp.execSync('node --check ' + p); } }); } walk('src'); console.log('All backend JavaScript files passed syntax verification.');\""
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1156.0",
+    "@aws-sdk/s3-request-presigner": "^3.1156.0",
     "bcryptjs": "^3.0.3",
+    "busboy": "^1.6.0",
     "compression": "^1.7.5",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",

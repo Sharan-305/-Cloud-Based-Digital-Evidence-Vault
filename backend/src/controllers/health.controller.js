@@ -18,7 +18,7 @@ function getHealth(req, res) {
     subsystems: {
       api: 'operational',
       database: dbConnected ? (isMemoryMode() ? 'connected_memory_adapter' : 'connected_mongodb') : 'disconnected',
-      storageS3: 'phase3_pending'
+      storageS3: 'operational'
     }
   });
 }

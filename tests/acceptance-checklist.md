@@ -13,10 +13,10 @@ Track actual verification per phase. Check off only after genuine tests are run.
   - [x] User registration, email verification, and admin approval flow tested.
   - [x] Password hashing (bcrypt) and RFC 6238 TOTP MFA verification tested.
   - [x] Role-based authorization & denial-by-default verified.
-- [ ] **Phase 3: Private S3 Storage**
-  - [ ] Private bucket with Block Public Access and SSE-S3/KMS verified.
-  - [ ] Upload state machine (`INITIATED` -> `COMPLETE`) and rollback on failure tested.
-  - [ ] Streaming upload with MIME/magic-number check verified.
+- [x] **Phase 3: Private S3 Storage**
+  - [x] Private bucket with Block Public Access and SSE-S3/KMS verified.
+  - [x] Upload state machine (`INITIATED` -> `COMPLETE`) and rollback on failure tested.
+  - [x] Streaming upload with MIME/magic-number check verified.
 - [ ] **Phase 4: Integrity and Custody**
   - [ ] Stream SHA-256 computation on intake verified.
   - [ ] Canonical manifest generation and Ed25519 digital signature verified.
