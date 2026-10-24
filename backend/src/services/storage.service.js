@@ -172,6 +172,21 @@ class StorageService {
   }
 
   /**
+   * Tamper with an object version in mock storage (used strictly in tests to simulate bit-rot / tampering)
+   */
+  static tamperObjectVersion({ key, versionId, buffer }) {
+    if (mockS3Storage.has(key)) {
+      const versions = mockS3Storage.get(key);
+      const match = versions.find(v => v.versionId === versionId);
+      if (match) {
+        match.buffer = Buffer.isBuffer(buffer) ? buffer : Buffer.from(buffer);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
    * Clear mock storage for testing
    */
   static clearMockStorage() {

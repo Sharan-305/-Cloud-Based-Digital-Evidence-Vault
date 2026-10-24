@@ -1,5 +1,6 @@
 const express = require('express');
 const evidenceController = require('../controllers/evidence.controller');
+const integrityController = require('../controllers/integrity.controller');
 const authenticate = require('../middleware/auth.middleware');
 const { requireRole } = require('../middleware/rbac.middleware');
 
@@ -24,9 +25,16 @@ router.post('/:evidenceId/versions', requireRole('investigator'), evidenceContro
 // Authorized download stream
 router.get('/:evidenceId/download', evidenceController.downloadEvidence);
 
-// Verification, Custody, and Reports scheduled for Phase 4 & 5
-router.post('/:evidenceId/verify', (req, res) => res.status(501).json({ error: { message: 'Integrity verification scheduled for Phase 4', code: 'NOT_IMPLEMENTED' } }));
-router.get('/:evidenceId/custody', (req, res) => res.status(501).json({ error: { message: 'Custody timeline scheduled for Phase 4', code: 'NOT_IMPLEMENTED' } }));
+// On-demand integrity verification (Admin, Investigator, Auditor)
+router.post('/:evidenceId/verify', integrityController.verifyEvidence);
+
+// Chain of custody timeline (Admin, Investigator, Auditor)
+router.get('/:evidenceId/custody', integrityController.getCustody);
+
+// Integrity check history
+router.get('/:evidenceId/integrity-history', integrityController.getIntegrityHistory);
+
+// PDF report export scheduled for Phase 5
 router.get('/:evidenceId/report', (req, res) => res.status(501).json({ error: { message: 'PDF report export scheduled for Phase 5', code: 'NOT_IMPLEMENTED' } }));
 
 module.exports = router;

@@ -17,11 +17,11 @@ Track actual verification per phase. Check off only after genuine tests are run.
   - [x] Private bucket with Block Public Access and SSE-S3/KMS verified.
   - [x] Upload state machine (`INITIATED` -> `COMPLETE`) and rollback on failure tested.
   - [x] Streaming upload with MIME/magic-number check verified.
-- [ ] **Phase 4: Integrity and Custody**
-  - [ ] Stream SHA-256 computation on intake verified.
-  - [ ] Canonical manifest generation and Ed25519 digital signature verified.
-  - [ ] Tamper alert generation on hash mismatch or invalid signature verified.
-  - [ ] Immutable custody event append verified.
+- [x] **Phase 4: Integrity and Custody**
+  - [x] Stream SHA-256 computation on intake verified.
+  - [x] Canonical manifest generation and Ed25519 digital signature verified.
+  - [x] Tamper alert generation on hash mismatch or invalid signature verified.
+  - [x] Immutable custody event append verified.
 - [ ] **Phase 5: Application Features**
   - [ ] Role-aware dashboard verified for Admin, Investigator, and Auditor.
   - [ ] Evidence register search, filter, sorting, and pagination verified.

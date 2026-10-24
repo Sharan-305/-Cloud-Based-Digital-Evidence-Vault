@@ -33,7 +33,7 @@ const AuditLogSchema = new mongoose.Schema({
   },
   result: {
     type: String,
-    enum: ['SUCCESS', 'FAILURE', 'DENIED'],
+    enum: ['SUCCESS', 'FAILURE', 'DENIED', 'TAMPER_DETECTED'],
     required: true
   },
   correlationId: {

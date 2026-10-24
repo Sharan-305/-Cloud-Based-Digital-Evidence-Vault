@@ -4,7 +4,8 @@ const path = require('path');
 const testFiles = [
   'tests/health.test.js',
   'tests/auth.test.js',
-  'tests/storage.test.js'
+  'tests/storage.test.js',
+  'tests/integrity.test.js'
 ];
 
 console.log(`[Test Runner] Running ${testFiles.length} test suites...\n`);
