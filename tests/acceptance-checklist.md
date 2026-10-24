@@ -35,6 +35,6 @@ Track actual verification per phase. Check off only after genuine tests are run.
 - [x] **Phase 7: Comprehensive End-to-End Testing**
   - [x] All roles tested against all endpoints.
   - [x] Synthetic demo fixtures validated.
-- [ ] **Phase 8: Docker & Cloud Deployment**
-  - [ ] Container build and multi-stage execution verified.
-  - [ ] AWS VM production deployment notes and healthchecks validated.
+- [x] **Phase 8: Docker & Cloud Deployment**
+  - [x] Container build and multi-stage execution verified.
+  - [x] AWS VM production deployment notes and healthchecks validated.
