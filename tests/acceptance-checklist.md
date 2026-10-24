@@ -8,11 +8,11 @@ Track actual verification per phase. Check off only after genuine tests are run.
   - [x] Semantic HTML5, CSS3, and Vanilla JS UI wireframes created.
   - [x] Automated test suite functional (`npm test`).
   - [x] SKILL.md accessibility & UI principles integrated.
-- [ ] **Phase 2: Database and Authentication**
-  - [ ] MongoDB Atlas connection & indexing verified.
-  - [ ] User registration, email verification, and admin approval flow tested.
-  - [ ] Password hashing (Argon2id/bcrypt) and MFA verification tested.
-  - [ ] Role-based authorization & denial-by-default verified.
+- [x] **Phase 2: Database and Authentication**
+  - [x] MongoDB Atlas connection & indexing verified.
+  - [x] User registration, email verification, and admin approval flow tested.
+  - [x] Password hashing (bcrypt) and RFC 6238 TOTP MFA verification tested.
+  - [x] Role-based authorization & denial-by-default verified.
 - [ ] **Phase 3: Private S3 Storage**
   - [ ] Private bucket with Block Public Access and SSE-S3/KMS verified.
   - [ ] Upload state machine (`INITIATED` -> `COMPLETE`) and rollback on failure tested.

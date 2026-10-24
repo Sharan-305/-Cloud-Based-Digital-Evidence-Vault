@@ -1,17 +1,22 @@
+process.env.NODE_ENV = 'test';
 const test = require('node:test');
 const assert = require('node:assert');
 const http = require('node:http');
 const app = require('../src/app');
+const { connectDB, disconnectDB } = require('../src/config/database');
 
 test('Health & Baseline API Verification Suite', async (t) => {
   let server;
   let testPort;
 
-  await t.test('Start test HTTP server instance', (t, done) => {
-    server = http.createServer(app);
-    server.listen(0, '127.0.0.1', () => {
-      testPort = server.address().port;
-      done();
+  await t.test('Start test HTTP server instance', async () => {
+    await connectDB();
+    await new Promise((resolve) => {
+      server = http.createServer(app);
+      server.listen(0, '127.0.0.1', () => {
+        testPort = server.address().port;
+        resolve();
+      });
     });
   });
 
@@ -22,6 +27,7 @@ test('Health & Baseline API Verification Suite', async (t) => {
     const body = await res.json();
     assert.strictEqual(body.status, 'healthy');
     assert.strictEqual(body.subsystems.api, 'operational');
+    assert.ok(body.subsystems.database.includes('connected'));
     assert.strictEqual(typeof body.uptimeSeconds, 'number');
     assert.ok(body.timestamp);
   });
@@ -35,8 +41,8 @@ test('Health & Baseline API Verification Suite', async (t) => {
     assert.ok(body.error.message.includes('/api/unmapped-endpoint'));
   });
 
-  await t.test('GET /api/auth returns 501 for unreached phase endpoint', async () => {
-    const res = await fetch(`http://127.0.0.1:${testPort}/api/auth`);
+  await t.test('GET /api/evidence returns 501 for phase 3 endpoint', async () => {
+    const res = await fetch(`http://127.0.0.1:${testPort}/api/evidence`);
     assert.strictEqual(res.status, 501);
 
     const body = await res.json();
