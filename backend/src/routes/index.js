@@ -5,6 +5,9 @@ const userRoutes = require('./user.routes');
 const evidenceRoutes = require('./evidence.routes');
 const alertRoutes = require('./alert.routes');
 const auditRoutes = require('./audit.routes');
+const accessRoutes = require('./access.routes');
+const dashboardRoutes = require('./dashboard.routes');
+const backupRoutes = require('./backup.routes');
 
 const router = express.Router();
 
@@ -15,10 +18,9 @@ router.use('/users', userRoutes);
 router.use('/evidence', evidenceRoutes);
 router.use('/alerts', alertRoutes);
 router.use('/audit-logs', auditRoutes);
-
-// Placeholder endpoints returning standard 501 for remaining phases
-router.use('/access-requests', (req, res) => res.status(501).json({ error: { message: 'Access workflow scheduled for Phase 5', code: 'NOT_IMPLEMENTED' } }));
-router.use('/backups', (req, res) => res.status(501).json({ error: { message: 'Backup module scheduled for Phase 5', code: 'NOT_IMPLEMENTED' } }));
+router.use('/access-requests', accessRoutes);
+router.use('/dashboard', dashboardRoutes);
+router.use('/backups', backupRoutes);
 
 // 404 for unmapped API endpoints
 router.use('*', (req, res) => {

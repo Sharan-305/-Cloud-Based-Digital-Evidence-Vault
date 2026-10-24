@@ -47,7 +47,7 @@
       <div class="card-header">
         <h2 class="card-title">Generate Report Document</h2>
       </div>
-      <form onsubmit="event.preventDefault(); window.UI.showAlert('report-alert-container', 'info', 'PDF generator module will compile vector report upon Phase 5 activation.');">
+      <form onsubmit="window.ReportManager.handleExport(event)">
         <div class="grid grid-cols-3">
           <div class="form-group">
             <label for="report-evidence-id" class="form-label">Select Evidence Record</label>

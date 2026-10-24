@@ -34,7 +34,7 @@ router.get('/:evidenceId/custody', integrityController.getCustody);
 // Integrity check history
 router.get('/:evidenceId/integrity-history', integrityController.getIntegrityHistory);
 
-// PDF report export scheduled for Phase 5
-router.get('/:evidenceId/report', (req, res) => res.status(501).json({ error: { message: 'PDF report export scheduled for Phase 5', code: 'NOT_IMPLEMENTED' } }));
+// PDF report export
+router.get('/:evidenceId/report', evidenceController.generateEvidenceReport);
 
 module.exports = router;

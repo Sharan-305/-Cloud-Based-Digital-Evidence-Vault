@@ -48,25 +48,25 @@
     <div class="grid grid-cols-4" id="dashboard-metrics" style="margin-bottom: var(--space-6);">
       <div class="card" style="margin-bottom: 0;">
         <span class="form-help">Evidence Records</span>
-        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2);">2</div>
-        <span class="badge badge-info" style="margin-top: var(--space-2);"><span aria-hidden="true">ℹ</span> Synthetic Demo</span>
+        <div id="stat-evidence-count" style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2);">2</div>
+        <span class="badge badge-info" style="margin-top: var(--space-2);"><span aria-hidden="true">ℹ</span> Catalog Active</span>
       </div>
 
       <div class="card" style="margin-bottom: 0;">
         <span class="form-help">Pending Access Requests</span>
-        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2);">1</div>
+        <div id="stat-pending-requests" style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2);">0</div>
         <span class="badge badge-warning" style="margin-top: var(--space-2);"><span aria-hidden="true">◷</span> Awaiting Review</span>
       </div>
 
       <div class="card" style="margin-bottom: 0;">
         <span class="form-help">Recent Integrity Checks</span>
-        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2);">100%</div>
+        <div id="stat-integrity-rate" style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2);">100%</div>
         <span class="badge badge-success" style="margin-top: var(--space-2);"><span aria-hidden="true">✓</span> Hashes Validated</span>
       </div>
 
       <div class="card" style="margin-bottom: 0;">
         <span class="form-help">Active Tamper Alerts</span>
-        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2); color: var(--color-success);">0</div>
+        <div id="stat-unresolved-alerts" style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2); color: var(--color-success);">0</div>
         <span class="badge badge-success" style="margin-top: var(--space-2);"><span aria-hidden="true">✓</span> All Baseline Matched</span>
       </div>
     </div>

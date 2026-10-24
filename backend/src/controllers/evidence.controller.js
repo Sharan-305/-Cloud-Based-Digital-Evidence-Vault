@@ -2,6 +2,8 @@ const busboy = require('busboy');
 const EvidenceService = require('../services/evidence.service');
 const StorageService = require('../services/storage.service');
 const AuditService = require('../services/audit.service');
+const AccessService = require('../services/access.service');
+const PdfReportService = require('../services/pdfReport.service');
 
 /**
  * Helper to parse multipart file upload using busboy streaming
@@ -218,6 +220,24 @@ async function downloadEvidence(req, res, next) {
       });
     }
 
+    // Object-level permission check: Restricted evidence requires active approved access grant
+    if (evidence.classification === 'restricted' && req.user.role !== 'admin') {
+      const hasActiveGrant = await AccessService.checkActiveAccess({
+        evidenceId,
+        userId: req.user._id || req.user.id
+      });
+
+      if (!hasActiveGrant) {
+        return res.status(403).json({
+          error: {
+            message: 'Access denied: Evidence is classified as Restricted. Active approved access request required.',
+            code: 'RESTRICTED_ACCESS_REQUIRED',
+            correlationId: req.correlationId
+          }
+        });
+      }
+    }
+
     const versions = await EvidenceService.getEvidenceVersions(evidenceId);
     let targetVersion;
     if (versionNumber) {
@@ -261,11 +281,36 @@ async function downloadEvidence(req, res, next) {
   }
 }
 
+/**
+ * Generate and stream signed PDF evidence report
+ */
+async function generateEvidenceReport(req, res, next) {
+  try {
+    const { evidenceId } = req.params;
+    const { versionNumber } = req.query;
+
+    const { docStream, filename } = await PdfReportService.generateReport({
+      evidenceId,
+      versionNumber,
+      user: req.user,
+      correlationId: req.correlationId
+    });
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+
+    docStream.pipe(res);
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   listEvidence,
   createEvidence,
   getEvidenceById,
   getEvidenceVersions,
   createEvidenceVersion,
-  downloadEvidence
+  downloadEvidence,
+  generateEvidenceReport
 };

@@ -42,12 +42,12 @@ test('Health & Baseline API Verification Suite', async (t) => {
     assert.ok(body.error.message.includes('/api/unmapped-endpoint'));
   });
 
-  await t.test('GET /api/access-requests returns 501 for phase 5 endpoint', async () => {
+  await t.test('GET /api/access-requests returns 401 when unauthenticated', async () => {
     const res = await fetch(`http://127.0.0.1:${testPort}/api/access-requests`);
-    assert.strictEqual(res.status, 501);
+    assert.strictEqual(res.status, 401);
 
     const body = await res.json();
-    assert.strictEqual(body.error.code, 'NOT_IMPLEMENTED');
+    assert.strictEqual(body.error.code, 'UNAUTHENTICATED');
   });
 
   await t.test('Server sends correlation ID header', async () => {

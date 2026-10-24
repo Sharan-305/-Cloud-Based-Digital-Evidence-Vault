@@ -49,7 +49,7 @@
         <div class="card-header">
           <h2 class="card-title">Request Restricted Evidence Access</h2>
         </div>
-        <form onsubmit="event.preventDefault(); window.UI.showAlert('access-alert-container', 'info', 'Access request submitted. Awaiting Administrator or Authorized Reviewer decision.');">
+        <form onsubmit="window.AccessRequests.handleSubmit(event)">
           <div class="form-group">
             <label for="req-evidence-id" class="form-label">Evidence ID *</label>
             <input type="text" id="req-evidence-id" class="form-control font-mono" required placeholder="e.g. EV-2026-0001">
@@ -94,7 +94,7 @@
                 <th scope="col">Decision</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="access-queue-body">
               <tr>
                 <td>inv_smith@vault</td>
                 <td class="font-mono">EV-2026-0001</td>
