@@ -47,7 +47,18 @@ const UserManager = {
 
   async toggleStatus(userId, currentStatus) {
     const nextStatus = currentStatus === 'active' ? 'suspended' : 'active';
-    await this.setStatus(userId, nextStatus);
+    const actionVerb = nextStatus === 'suspended' ? 'Suspend' : 'Activate';
+    const confirmClass = nextStatus === 'suspended' ? 'btn-danger' : 'btn-primary';
+
+    window.UI.confirmAction({
+      title: `${actionVerb} User Account`,
+      message: `Are you sure you want to change this user status to '${nextStatus}'? ${nextStatus === 'suspended' ? 'Suspended users will be immediately locked out of the vault.' : 'Active users will regain system access.'}`,
+      confirmText: actionVerb,
+      confirmClass: confirmClass,
+      onConfirm: async () => {
+        await this.setStatus(userId, nextStatus);
+      }
+    });
   }
 };
 

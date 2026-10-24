@@ -65,28 +65,44 @@ const AccessRequests = {
     }
   },
 
-  async approve(requestId) {
-    try {
-      await window.API.post(`/access-requests/${encodeURIComponent(requestId)}/approve`, {
-        decisionReason: 'Approved by Administrator via Control Surface'
-      });
-      window.UI.showAlert('access-alert-container', 'success', 'Access request approved. Expiry set.');
-      this.loadQueue();
-    } catch (err) {
-      window.UI.showAlert('access-alert-container', 'danger', `Approval failed: ${err.message}`);
-    }
+  approve(requestId) {
+    window.UI.confirmAction({
+      title: 'Approve Access Request',
+      message: 'Are you sure you want to approve this access request? The investigator will be granted time-bound download and verification privileges.',
+      confirmText: 'Approve Request',
+      confirmClass: 'btn-primary',
+      onConfirm: async () => {
+        try {
+          await window.API.post(`/access-requests/${encodeURIComponent(requestId)}/approve`, {
+            decisionReason: 'Approved by Administrator via Control Surface'
+          });
+          window.UI.showAlert('access-alert-container', 'success', 'Access request approved. Expiry set.');
+          this.loadQueue();
+        } catch (err) {
+          window.UI.showAlert('access-alert-container', 'danger', `Approval failed: ${err.message}`);
+        }
+      }
+    });
   },
 
-  async reject(requestId) {
-    try {
-      await window.API.post(`/access-requests/${encodeURIComponent(requestId)}/reject`, {
-        decisionReason: 'Rejected by Reviewer'
-      });
-      window.UI.showAlert('access-alert-container', 'warning', 'Access request rejected.');
-      this.loadQueue();
-    } catch (err) {
-      window.UI.showAlert('access-alert-container', 'danger', `Rejection failed: ${err.message}`);
-    }
+  reject(requestId) {
+    window.UI.confirmAction({
+      title: 'Reject Access Request',
+      message: 'Are you sure you want to reject this access request? The requester will be denied access to the evidence item.',
+      confirmText: 'Reject Request',
+      confirmClass: 'btn-danger',
+      onConfirm: async () => {
+        try {
+          await window.API.post(`/access-requests/${encodeURIComponent(requestId)}/reject`, {
+            decisionReason: 'Rejected by Reviewer'
+          });
+          window.UI.showAlert('access-alert-container', 'warning', 'Access request rejected.');
+          this.loadQueue();
+        } catch (err) {
+          window.UI.showAlert('access-alert-container', 'danger', `Rejection failed: ${err.message}`);
+        }
+      }
+    });
   }
 };
 

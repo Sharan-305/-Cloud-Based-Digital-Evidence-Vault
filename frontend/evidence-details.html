@@ -39,18 +39,19 @@
     <div class="page-header" style="flex-direction: row; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-4);">
       <div>
         <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-1);">
-          <span class="font-mono" style="font-size: var(--font-size-lg); font-weight: bold; color: var(--color-primary);">EV-2026-0001</span>
-          <span class="badge badge-success"><span aria-hidden="true">✓</span> Active Baseline</span>
+          <span id="detail-evidence-id" class="font-mono" style="font-size: var(--font-size-lg); font-weight: bold; color: var(--color-primary);">EV-2026-0001</span>
+          <span id="detail-status-badge" class="badge badge-success"><span aria-hidden="true">✓</span> Active Baseline</span>
         </div>
-        <h1 class="page-title">Incident Network Traffic Capture (Synthetic)</h1>
-        <p class="page-description">Case: CASE-2026-901 &bull; Category: Logs &bull; Classification: Confidential</p>
+        <h1 id="detail-title" class="page-title">Incident Network Traffic Capture (Synthetic)</h1>
+        <p id="detail-description" class="page-description">Case: CASE-2026-901 &bull; Category: Logs &bull; Classification: Confidential</p>
       </div>
 
-      <div style="display: flex; gap: var(--space-2);">
-        <button type="button" class="btn btn-primary" onclick="window.UI.showAlert('details-alert-container', 'success', 'Integrity check verification scheduled for Phase 4 activation.');">
+      <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+        <button id="btn-verify-integrity" type="button" class="btn btn-primary" onclick="window.EvidenceManager.runIntegrityVerificationCurrent()">
           Run Integrity Verification
         </button>
-        <a href="/reports.html?id=EV-2026-0001" class="btn btn-secondary">Export PDF Report</a>
+        <a id="btn-export-pdf" href="/reports.html?id=EV-2026-0001" class="btn btn-secondary">Export PDF Report</a>
+        <button id="btn-download-file" type="button" class="btn btn-secondary" onclick="window.EvidenceManager.downloadCurrentEvidence()">Download Artifact</button>
       </div>
     </div>
 
@@ -60,30 +61,30 @@
     <div class="grid grid-cols-2">
       <div class="card">
         <div class="card-header">
-          <h2 class="card-title">Cryptographic Manifest (Current Version: v1)</h2>
+          <h2 id="manifest-card-title" class="card-title">Cryptographic Manifest (Current Version: v1)</h2>
         </div>
         <div class="table-responsive">
           <table class="table">
             <tbody>
               <tr>
                 <th scope="row" style="width: 35%;">SHA-256 Digest</th>
-                <td class="font-mono">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td>
+                <td id="manifest-sha256" class="font-mono">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td>
               </tr>
               <tr>
                 <th scope="row">Manifest Signature</th>
-                <td><span class="badge badge-success"><span aria-hidden="true">✓</span> Valid (Ed25519)</span></td>
+                <td id="manifest-signature"><span class="badge badge-success"><span aria-hidden="true">✓</span> Valid (Ed25519)</span></td>
               </tr>
               <tr>
                 <th scope="row">Signing Key ID</th>
-                <td class="font-mono">vault-ed25519-key-01</td>
+                <td id="manifest-key-id" class="font-mono">vault-ed25519-key-01</td>
               </tr>
               <tr>
                 <th scope="row">S3 Version ID</th>
-                <td class="font-mono">s3-ver-2026-demo-v1-987654</td>
+                <td id="manifest-s3-version" class="font-mono">s3-ver-2026-demo-v1-987654</td>
               </tr>
               <tr>
                 <th scope="row">Original Filename</th>
-                <td>synthetic_capture_20261024.pcap (1,048,576 bytes)</td>
+                <td id="manifest-filename">synthetic_capture_20261024.pcap (1,048,576 bytes)</td>
               </tr>
             </tbody>
           </table>
@@ -104,7 +105,7 @@
                 <th scope="col">Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="versions-table-body">
               <tr>
                 <td><strong>v1 (Current)</strong></td>
                 <td>investigator@demo.vault</td>
@@ -134,7 +135,7 @@
               <th scope="col">Correlation ID</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="custody-table-body">
             <tr>
               <td class="font-mono">2026-10-24 16:00:15</td>
               <td>investigator@demo.vault</td>
@@ -174,5 +175,6 @@
   <script src="/js/api.js"></script>
   <script src="/js/ui.js"></script>
   <script src="/js/auth.js"></script>
+  <script src="/js/evidence.js"></script>
 </body>
 </html>

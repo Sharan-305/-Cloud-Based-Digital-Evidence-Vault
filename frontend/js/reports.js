@@ -2,6 +2,28 @@
  * PDF Evidence Report Controller
  */
 const ReportManager = {
+  async init() {
+    const select = document.getElementById('report-evidence-id');
+    if (!select) return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const preselectedId = urlParams.get('id');
+
+    try {
+      const data = await window.API.get('/evidence');
+      if (data && data.evidence && data.evidence.length > 0) {
+        select.innerHTML = data.evidence.map(ev => {
+          const isSelected = preselectedId && ev.evidenceId === preselectedId ? 'selected' : '';
+          return `<option value="${window.UI.escapeHtml(ev.evidenceId)}" ${isSelected}>${window.UI.escapeHtml(ev.evidenceId)} — ${window.UI.escapeHtml(ev.title)}</option>`;
+        }).join('');
+      } else if (preselectedId) {
+        select.innerHTML = `<option value="${window.UI.escapeHtml(preselectedId)}" selected>${window.UI.escapeHtml(preselectedId)}</option>`;
+      }
+    } catch (err) {
+      console.warn('[ReportManager] Failed to populate evidence options:', err.message);
+    }
+  },
+
   async handleExport(e) {
     e.preventDefault();
     const evidenceId = document.getElementById('report-evidence-id').value;
@@ -46,3 +68,7 @@ const ReportManager = {
 };
 
 window.ReportManager = ReportManager;
+
+document.addEventListener('DOMContentLoaded', () => {
+  ReportManager.init();
+});

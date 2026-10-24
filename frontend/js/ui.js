@@ -74,6 +74,65 @@ const UI = {
       default:
         return `<span class="badge badge-info"><span aria-hidden="true">ℹ</span> ${this.escapeHtml(status)}</span>`;
     }
+  },
+
+  /**
+   * Accessible confirmation dialog (agency & responsibility in SKILL.md)
+   */
+  confirmAction({ title, message, confirmText = 'Confirm', confirmClass = 'btn-primary', onConfirm }) {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'modal-backdrop';
+    backdrop.setAttribute('role', 'dialog');
+    backdrop.setAttribute('aria-modal', 'true');
+    backdrop.setAttribute('aria-labelledby', 'modal-confirm-title');
+
+    backdrop.innerHTML = `
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2 id="modal-confirm-title" class="card-title">${this.escapeHtml(title)}</h2>
+          <button type="button" class="btn btn-secondary btn-sm close-modal-btn" aria-label="Close dialog">✕</button>
+        </div>
+        <div class="modal-body">
+          <p>${this.escapeHtml(message)}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary cancel-btn">Cancel</button>
+          <button type="button" class="btn ${confirmClass} confirm-btn">${this.escapeHtml(confirmText)}</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(backdrop);
+
+    const cancelBtn = backdrop.querySelector('.cancel-btn');
+    const closeBtn = backdrop.querySelector('.close-modal-btn');
+    const confirmBtn = backdrop.querySelector('.confirm-btn');
+
+    // Focus cancel button initially for safety on destructive actions
+    cancelBtn.focus();
+
+    function removeModal() {
+      document.removeEventListener('keydown', handleKeyDown);
+      backdrop.remove();
+    }
+
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        removeModal();
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    cancelBtn.addEventListener('click', removeModal);
+    closeBtn.addEventListener('click', removeModal);
+
+    confirmBtn.addEventListener('click', () => {
+      removeModal();
+      if (typeof onConfirm === 'function') {
+        onConfirm();
+      }
+    });
   }
 };
 
