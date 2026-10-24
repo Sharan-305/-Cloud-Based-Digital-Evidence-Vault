@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Logs — Digital Evidence Vault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/index.html" class="brand" aria-label="Digital Evidence Vault Home">
+        <span class="brand-badge">Vault</span>
+        <span class="brand-title">Digital Evidence Vault</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="/evidence.html" class="nav-link">Evidence Register</a></li>
+          <li><a href="/access-requests.html" class="nav-link">Access Requests</a></li>
+          <li><a href="/audit-logs.html" class="nav-link active" aria-current="page">Audit Logs</a></li>
+          <li><a href="/reports.html" class="nav-link">Reports</a></li>
+          <li><a href="/users.html" class="nav-link">Users</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-nav-panel">
+        <span class="role-pill">AUDITOR</span>
+        <a href="/login.html" class="btn btn-secondary btn-sm">Sign Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Read-Only System Audit Logs</h1>
+      <p class="page-description">Tamper-evident system activity log. Raw passwords, MFA secrets, private keys, and evidence contents are strictly excluded.</p>
+    </div>
+
+    <div class="card">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Timestamp (UTC)</th>
+              <th scope="col">Actor</th>
+              <th scope="col">Action</th>
+              <th scope="col">Target</th>
+              <th scope="col">Result</th>
+              <th scope="col">Correlation ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-mono">2026-10-24 16:20:00</td>
+              <td>auditor@demo.vault</td>
+              <td>AUDIT_EXPORT_VIEW</td>
+              <td>SYSTEM_AUDIT</td>
+              <td><span class="badge badge-success"><span aria-hidden="true">✓</span> SUCCESS</span></td>
+              <td class="font-mono">corr-audit-20261024-911</td>
+            </tr>
+            <tr>
+              <td class="font-mono">2026-10-24 16:15:30</td>
+              <td>auditor@demo.vault</td>
+              <td>VIEW_EVIDENCE_METADATA</td>
+              <td class="font-mono">EV-2026-0001</td>
+              <td><span class="badge badge-success"><span aria-hidden="true">✓</span> SUCCESS</span></td>
+              <td class="font-mono">corr-view-20261024-003</td>
+            </tr>
+            <tr>
+              <td class="font-mono">2026-10-24 16:00:15</td>
+              <td>investigator@demo.vault</td>
+              <td>EVIDENCE_INTAKE</td>
+              <td class="font-mono">EV-2026-0001</td>
+              <td><span class="badge badge-success"><span aria-hidden="true">✓</span> SUCCESS</span></td>
+              <td class="font-mono">corr-intake-20261024-001</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>Cloud-Based Digital Evidence Vault &bull; Read-Only Audit Journal</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

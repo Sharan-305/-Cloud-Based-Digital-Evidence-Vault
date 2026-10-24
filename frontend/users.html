@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User & Role Administration — Digital Evidence Vault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/index.html" class="brand" aria-label="Digital Evidence Vault Home">
+        <span class="brand-badge">Vault</span>
+        <span class="brand-title">Digital Evidence Vault</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="/evidence.html" class="nav-link">Evidence Register</a></li>
+          <li><a href="/access-requests.html" class="nav-link">Access Requests</a></li>
+          <li><a href="/audit-logs.html" class="nav-link">Audit Logs</a></li>
+          <li><a href="/reports.html" class="nav-link">Reports</a></li>
+          <li><a href="/users.html" class="nav-link active" aria-current="page">Users</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-nav-panel">
+        <span class="role-pill">ADMINISTRATOR</span>
+        <a href="/login.html" class="btn btn-secondary btn-sm">Sign Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">User & Role Management (Administrator Only)</h1>
+      <p class="page-description">Activate accounts, enforce MFA requirements, and assign least-privilege roles (Administrator, Investigator, Auditor).</p>
+    </div>
+
+    <div id="users-alert-container"></div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Registered System Users</h2>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">User Email</th>
+              <th scope="col">Assigned Role</th>
+              <th scope="col">Account Status</th>
+              <th scope="col">MFA Enforced</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>admin@agency.gov</strong></td>
+              <td><span class="role-pill">Administrator</span></td>
+              <td><span class="badge badge-success"><span aria-hidden="true">●</span> Active</span></td>
+              <td><span class="badge badge-success"><span aria-hidden="true">✓</span> Enabled</span></td>
+              <td><span class="form-help">Current Profile</span></td>
+            </tr>
+            <tr>
+              <td>investigator@agency.gov</td>
+              <td><span class="role-pill">Investigator</span></td>
+              <td><span class="badge badge-success"><span aria-hidden="true">●</span> Active</span></td>
+              <td><span class="badge badge-success"><span aria-hidden="true">✓</span> Enabled</span></td>
+              <td>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="window.UI.showAlert('users-alert-container', 'warning', 'Role assignment modifications will be saved to MongoDB in Phase 2.');">Edit Role</button>
+              </td>
+            </tr>
+            <tr>
+              <td>new_auditor@agency.gov</td>
+              <td><span class="role-pill">Auditor</span></td>
+              <td><span class="badge badge-warning"><span aria-hidden="true">◷</span> Pending Approval</span></td>
+              <td><span class="badge badge-warning"><span aria-hidden="true">◷</span> Pending</span></td>
+              <td>
+                <button type="button" class="btn btn-primary btn-sm" onclick="window.UI.showAlert('users-alert-container', 'success', 'User account approved and activated.');">Approve</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>Cloud-Based Digital Evidence Vault &bull; Administrative Control Surface</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/users.js"></script>
+</body>
+</html>

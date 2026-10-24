@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidence Details & Custody — Digital Evidence Vault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/index.html" class="brand" aria-label="Digital Evidence Vault Home">
+        <span class="brand-badge">Vault</span>
+        <span class="brand-title">Digital Evidence Vault</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="/evidence.html" class="nav-link active">Evidence Register</a></li>
+          <li><a href="/access-requests.html" class="nav-link">Access Requests</a></li>
+          <li><a href="/audit-logs.html" class="nav-link">Audit Logs</a></li>
+          <li><a href="/reports.html" class="nav-link">Reports</a></li>
+          <li><a href="/users.html" class="nav-link">Users</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-nav-panel">
+        <span class="role-pill">INVESTIGATOR</span>
+        <a href="/login.html" class="btn btn-secondary btn-sm">Sign Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content">
+    <div class="page-header" style="flex-direction: row; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-4);">
+      <div>
+        <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-1);">
+          <span class="font-mono" style="font-size: var(--font-size-lg); font-weight: bold; color: var(--color-primary);">EV-2026-0001</span>
+          <span class="badge badge-success"><span aria-hidden="true">✓</span> Active Baseline</span>
+        </div>
+        <h1 class="page-title">Incident Network Traffic Capture (Synthetic)</h1>
+        <p class="page-description">Case: CASE-2026-901 &bull; Category: Logs &bull; Classification: Confidential</p>
+      </div>
+
+      <div style="display: flex; gap: var(--space-2);">
+        <button type="button" class="btn btn-primary" onclick="window.UI.showAlert('details-alert-container', 'success', 'Integrity check verification scheduled for Phase 4 activation.');">
+          Run Integrity Verification
+        </button>
+        <a href="/reports.html?id=EV-2026-0001" class="btn btn-secondary">Export PDF Report</a>
+      </div>
+    </div>
+
+    <div id="details-alert-container"></div>
+
+    <!-- Metadata Details -->
+    <div class="grid grid-cols-2">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Cryptographic Manifest (Current Version: v1)</h2>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row" style="width: 35%;">SHA-256 Digest</th>
+                <td class="font-mono">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td>
+              </tr>
+              <tr>
+                <th scope="row">Manifest Signature</th>
+                <td><span class="badge badge-success"><span aria-hidden="true">✓</span> Valid (Ed25519)</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Signing Key ID</th>
+                <td class="font-mono">vault-ed25519-key-01</td>
+              </tr>
+              <tr>
+                <th scope="row">S3 Version ID</th>
+                <td class="font-mono">s3-ver-2026-demo-v1-987654</td>
+              </tr>
+              <tr>
+                <th scope="row">Original Filename</th>
+                <td>synthetic_capture_20261024.pcap (1,048,576 bytes)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Version History</h2>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Version</th>
+                <th scope="col">Uploaded By</th>
+                <th scope="col">Timestamp</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>v1 (Current)</strong></td>
+                <td>investigator@demo.vault</td>
+                <td>2026-10-24 16:00:00</td>
+                <td><span class="badge badge-success"><span aria-hidden="true">✓</span> Baseline Set</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chain of Custody Timeline -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Chain-of-Custody Timeline (Immutable Log)</h2>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Timestamp (UTC)</th>
+              <th scope="col">Actor</th>
+              <th scope="col">Action</th>
+              <th scope="col">Version</th>
+              <th scope="col">Result</th>
+              <th scope="col">Correlation ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-mono">2026-10-24 16:00:15</td>
+              <td>investigator@demo.vault</td>
+              <td>INTAKE_STORED</td>
+              <td>v1</td>
+              <td><span class="badge badge-success"><span aria-hidden="true">✓</span> SUCCESS</span></td>
+              <td class="font-mono">corr-intake-20261024-001</td>
+            </tr>
+            <tr>
+              <td class="font-mono">2026-10-24 16:00:16</td>
+              <td>system_signer</td>
+              <td>MANIFEST_SIGNED</td>
+              <td>v1</td>
+              <td><span class="badge badge-success"><span aria-hidden="true">✓</span> SUCCESS</span></td>
+              <td class="font-mono">corr-sign-20261024-002</td>
+            </tr>
+            <tr>
+              <td class="font-mono">2026-10-24 16:15:30</td>
+              <td>auditor@demo.vault</td>
+              <td>VIEW_METADATA</td>
+              <td>v1</td>
+              <td><span class="badge badge-info"><span aria-hidden="true">ℹ</span> VIEWED</span></td>
+              <td class="font-mono">corr-view-20261024-003</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>Cloud-Based Digital Evidence Vault &bull; Immutable Custody Records</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud-Based Digital Evidence Vault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/index.html" class="brand" aria-label="Digital Evidence Vault Home">
+        <span class="brand-badge">Vault</span>
+        <span class="brand-title">Digital Evidence Vault</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="/evidence.html" class="nav-link">Evidence Register</a></li>
+          <li><a href="/access-requests.html" class="nav-link">Access Requests</a></li>
+          <li><a href="/audit-logs.html" class="nav-link">Audit Logs</a></li>
+          <li><a href="/reports.html" class="nav-link">Reports</a></li>
+          <li><a href="/users.html" class="nav-link">Users</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-nav-panel">
+        <span id="system-health-pill" class="badge badge-info"><span aria-hidden="true">●</span> Checking API...</span>
+        <a href="/login.html" id="nav-auth-btn" class="btn btn-secondary btn-sm">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Secure Cloud-Based Digital Evidence Vault</h1>
+      <p class="page-description">Cryptographic verification, private S3 object storage, and immutable chain-of-custody tracking.</p>
+    </div>
+
+    <div class="alert alert-info" role="region" aria-label="Project notice">
+      <span aria-hidden="true" style="font-size: 1.25rem;">ℹ</span>
+      <div>
+        <strong>Academic Demonstration Platform:</strong> This application utilizes synthetic demo evidence and deterministic SHA-256 integrity verification with canonical Ed25519 manifest signatures.
+      </div>
+    </div>
+
+    <div class="grid grid-cols-3">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Evidence Register</h2>
+        </div>
+        <p style="color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+          Catalog, search, and verify digital evidence records with strict multi-versioning.
+        </p>
+        <a href="/evidence.html" class="btn btn-primary">Browse Register</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Chain of Custody</h2>
+        </div>
+        <p style="color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+          Traceable history recording every intake, verification, view, and export event.
+        </p>
+        <a href="/evidence-details.html" class="btn btn-secondary">View Sample Timeline</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Integrity & Alerts</h2>
+        </div>
+        <p style="color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+          On-demand SHA-256 byte recalculation and tamper alert triggers.
+        </p>
+        <a href="/dashboard.html" class="btn btn-secondary">Review Health & Metrics</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>Cloud-Based Digital Evidence Vault &bull; Phase 1 Baseline Setup</p>
+      <p>Academic secure-vault demonstration. Not an accredited legal forensic platform.</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

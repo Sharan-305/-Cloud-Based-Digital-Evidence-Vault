@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Digital Evidence Vault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/index.html" class="brand" aria-label="Digital Evidence Vault Home">
+        <span class="brand-badge">Vault</span>
+        <span class="brand-title">Digital Evidence Vault</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="/dashboard.html" class="nav-link active" aria-current="page">Dashboard</a></li>
+          <li><a href="/evidence.html" class="nav-link">Evidence Register</a></li>
+          <li><a href="/access-requests.html" class="nav-link">Access Requests</a></li>
+          <li><a href="/audit-logs.html" class="nav-link">Audit Logs</a></li>
+          <li><a href="/reports.html" class="nav-link">Reports</a></li>
+          <li><a href="/users.html" class="nav-link">Users</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-nav-panel">
+        <span id="user-role-badge" class="role-pill">INVESTIGATOR</span>
+        <span id="user-display-email" style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">investigator@demo.vault</span>
+        <a href="/login.html" id="nav-auth-btn" class="btn btn-secondary btn-sm">Sign Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Operational Dashboard</h1>
+      <p class="page-description">Overview of active evidence intake, tamper alerts, pending access approvals, and cryptographic integrity health.</p>
+    </div>
+
+    <div id="dashboard-alert-container"></div>
+
+    <!-- Stat Metrics -->
+    <div class="grid grid-cols-4" id="dashboard-metrics" style="margin-bottom: var(--space-6);">
+      <div class="card" style="margin-bottom: 0;">
+        <span class="form-help">Evidence Records</span>
+        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2);">2</div>
+        <span class="badge badge-info" style="margin-top: var(--space-2);"><span aria-hidden="true">ℹ</span> Synthetic Demo</span>
+      </div>
+
+      <div class="card" style="margin-bottom: 0;">
+        <span class="form-help">Pending Access Requests</span>
+        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2);">1</div>
+        <span class="badge badge-warning" style="margin-top: var(--space-2);"><span aria-hidden="true">◷</span> Awaiting Review</span>
+      </div>
+
+      <div class="card" style="margin-bottom: 0;">
+        <span class="form-help">Recent Integrity Checks</span>
+        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2);">100%</div>
+        <span class="badge badge-success" style="margin-top: var(--space-2);"><span aria-hidden="true">✓</span> Hashes Validated</span>
+      </div>
+
+      <div class="card" style="margin-bottom: 0;">
+        <span class="form-help">Active Tamper Alerts</span>
+        <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-top: var(--space-2); color: var(--color-success);">0</div>
+        <span class="badge badge-success" style="margin-top: var(--space-2);"><span aria-hidden="true">✓</span> All Baseline Matched</span>
+      </div>
+    </div>
+
+    <!-- Live System & Cryptographic Status -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">System & Storage Subsystems</h2>
+        <span id="system-health-pill" class="badge badge-info"><span aria-hidden="true">●</span> Checking API...</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Subsystem</th>
+              <th scope="col">Status</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Backend API Gateway</td>
+              <td><span class="badge badge-success"><span aria-hidden="true">●</span> Operational</span></td>
+              <td>Node.js Express running on port 5000 with Helmet CSP & Rate Limiter</td>
+            </tr>
+            <tr>
+              <td>Metadata Database</td>
+              <td><span class="badge badge-warning"><span aria-hidden="true">◷</span> Phase 2 Scheduled</span></td>
+              <td>MongoDB Atlas integration scheduled for Phase 2</td>
+            </tr>
+            <tr>
+              <td>Private S3 Storage</td>
+              <td><span class="badge badge-warning"><span aria-hidden="true">◷</span> Phase 3 Scheduled</span></td>
+              <td>Private versioned Amazon S3 bucket with Block Public Access</td>
+            </tr>
+            <tr>
+              <td>Integrity Engine</td>
+              <td><span class="badge badge-warning"><span aria-hidden="true">◷</span> Phase 4 Scheduled</span></td>
+              <td>SHA-256 byte stream & Ed25519 canonical manifest signing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>Cloud-Based Digital Evidence Vault &bull; Role-Aware Dashboard</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

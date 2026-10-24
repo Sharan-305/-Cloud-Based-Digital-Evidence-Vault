@@ -1,0 +1,28 @@
+{
+  "name": "cloud-digital-evidence-vault-backend",
+  "version": "1.0.0",
+  "description": "Secure backend API for Cloud-Based Digital Evidence Vault",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test tests/*.test.js",
+    "lint": "node -e \"const fs = require('fs'), path = require('path'), cp = require('child_process'); function walk(d) { fs.readdirSync(d).forEach(f => { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) walk(p); else if (p.endsWith('.js')) { cp.execSync('node --check ' + p); } }); } walk('src'); console.log('All backend JavaScript files passed syntax verification.');\""
+  },
+  "dependencies": {
+    "compression": "^1.7.5",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "private": true
+}

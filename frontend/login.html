@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authentication & MFA — Evidence Vault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/index.html" class="brand" aria-label="Digital Evidence Vault Home">
+        <span class="brand-badge">Vault</span>
+        <span class="brand-title">Digital Evidence Vault</span>
+      </a>
+      <a href="/index.html" class="nav-link">Return to Home</a>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content" style="max-width: 500px; margin-top: var(--space-8);">
+    <div id="auth-alert-container"></div>
+
+    <div class="card">
+      <div class="card-header">
+        <h1 class="card-title">Sign In to Evidence Vault</h1>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-email" class="form-label">Email Address</label>
+          <input type="email" id="login-email" class="form-control" required autocomplete="email" placeholder="investigator@agency.gov">
+        </div>
+
+        <div class="form-group">
+          <label for="login-password" class="form-label">Password</label>
+          <input type="password" id="login-password" class="form-control" required autocomplete="current-password" placeholder="••••••••••••">
+        </div>
+
+        <div class="form-group">
+          <label for="login-mfa" class="form-label">Multi-Factor Authentication (MFA) Code</label>
+          <input type="text" id="login-mfa" class="form-control font-mono" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="6-digit code">
+          <span class="form-help">Enter TOTP from your authenticator app. Required for all roles.</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--space-4);">Authenticate</button>
+      </form>
+
+      <div style="margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--color-border); font-size: var(--font-size-sm); display: flex; flex-direction: column; gap: var(--space-2);">
+        <p>New account? <a href="#register" onclick="window.UI.showAlert('auth-alert-container', 'info', 'New accounts require Administrator approval before activation in Phase 2.');">Request Registration</a></p>
+        <p><a href="#forgot" onclick="window.UI.showAlert('auth-alert-container', 'info', 'Password reset workflow will be enabled in Phase 2.');">Forgot Password?</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>Secure Authentication Gateway &bull; Enforces Deny-By-Default & Rate Limiting</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

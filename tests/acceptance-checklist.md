@@ -1,0 +1,40 @@
+# Acceptance Checklist & Verification Status
+
+Track actual verification per phase. Check off only after genuine tests are run.
+
+- [ ] **Phase 1: Project Setup**
+  - [x] Folder structure and configuration initialized.
+  - [x] Node.js & Express server baseline scaffolded with healthcheck endpoint.
+  - [x] Semantic HTML5, CSS3, and Vanilla JS UI wireframes created.
+  - [x] Automated test suite functional (`npm test`).
+  - [x] SKILL.md accessibility & UI principles integrated.
+- [ ] **Phase 2: Database and Authentication**
+  - [ ] MongoDB Atlas connection & indexing verified.
+  - [ ] User registration, email verification, and admin approval flow tested.
+  - [ ] Password hashing (Argon2id/bcrypt) and MFA verification tested.
+  - [ ] Role-based authorization & denial-by-default verified.
+- [ ] **Phase 3: Private S3 Storage**
+  - [ ] Private bucket with Block Public Access and SSE-S3/KMS verified.
+  - [ ] Upload state machine (`INITIATED` -> `COMPLETE`) and rollback on failure tested.
+  - [ ] Streaming upload with MIME/magic-number check verified.
+- [ ] **Phase 4: Integrity and Custody**
+  - [ ] Stream SHA-256 computation on intake verified.
+  - [ ] Canonical manifest generation and Ed25519 digital signature verified.
+  - [ ] Tamper alert generation on hash mismatch or invalid signature verified.
+  - [ ] Immutable custody event append verified.
+- [ ] **Phase 5: Application Features**
+  - [ ] Role-aware dashboard verified for Admin, Investigator, and Auditor.
+  - [ ] Evidence register search, filter, sorting, and pagination verified.
+  - [ ] Access request, self-approval prevention, expiry, and revocation tested.
+  - [ ] PDF report generation with metadata, custody timeline, and signature status tested.
+- [ ] **Phase 6: UI & Accessibility Review**
+  - [ ] Purpose, Agency, Responsibility principles verified on all views.
+  - [ ] Visible focus indicators and keyboard accessibility verified.
+  - [ ] Statuses communicated via text/icon rather than color alone verified.
+  - [ ] Responsive design verified across mobile, tablet, and desktop breakpoints.
+- [ ] **Phase 7: Comprehensive End-to-End Testing**
+  - [ ] All roles tested against all endpoints.
+  - [ ] Synthetic demo fixtures validated.
+- [ ] **Phase 8: Docker & Cloud Deployment**
+  - [ ] Container build and multi-stage execution verified.
+  - [ ] AWS VM production deployment notes and healthchecks validated.

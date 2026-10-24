@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Requests & Approvals — Digital Evidence Vault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/index.html" class="brand" aria-label="Digital Evidence Vault Home">
+        <span class="brand-badge">Vault</span>
+        <span class="brand-title">Digital Evidence Vault</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="/evidence.html" class="nav-link">Evidence Register</a></li>
+          <li><a href="/access-requests.html" class="nav-link active" aria-current="page">Access Requests</a></li>
+          <li><a href="/audit-logs.html" class="nav-link">Audit Logs</a></li>
+          <li><a href="/reports.html" class="nav-link">Reports</a></li>
+          <li><a href="/users.html" class="nav-link">Users</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-nav-panel">
+        <span class="role-pill">INVESTIGATOR</span>
+        <a href="/login.html" class="btn btn-secondary btn-sm">Sign Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Evidence Access Control & Approvals</h1>
+      <p class="page-description">Submit time-bound access requests for restricted evidence. Reviewers grant or deny permissions with logged justifications.</p>
+    </div>
+
+    <div id="access-alert-container"></div>
+
+    <div class="grid grid-cols-2">
+      <!-- Submit Request Form -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Request Restricted Evidence Access</h2>
+        </div>
+        <form onsubmit="event.preventDefault(); window.UI.showAlert('access-alert-container', 'info', 'Access request submitted. Awaiting Administrator or Authorized Reviewer decision.');">
+          <div class="form-group">
+            <label for="req-evidence-id" class="form-label">Evidence ID *</label>
+            <input type="text" id="req-evidence-id" class="form-control font-mono" required placeholder="e.g. EV-2026-0001">
+          </div>
+
+          <div class="form-group">
+            <label for="req-duration" class="form-label">Requested Access Duration *</label>
+            <select id="req-duration" class="form-control" required>
+              <option value="1">1 Hour</option>
+              <option value="4">4 Hours</option>
+              <option value="8" selected>8 Hours</option>
+              <option value="24">24 Hours</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="req-justification" class="form-label">Operational Justification / Reason *</label>
+            <textarea id="req-justification" class="form-control" rows="3" required placeholder="Specify case reason, court order, or authorized investigative task..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit Request for Approval</button>
+        </form>
+      </div>
+
+      <!-- Pending Approval Queue -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Approval Queue (Admin / Reviewer)</h2>
+          <span class="badge badge-warning"><span aria-hidden="true">◷</span> 1 Pending</span>
+        </div>
+        <div class="alert alert-warning">
+          <span aria-hidden="true">⚠</span>
+          <div><strong>Rule Enforced:</strong> Self-approval is strictly prevented by the backend. Requesters cannot approve their own requests.</div>
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Requester</th>
+                <th scope="col">Target</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Decision</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>inv_smith@vault</td>
+                <td class="font-mono">EV-2026-0001</td>
+                <td>4 hrs</td>
+                <td>
+                  <div style="display: flex; gap: var(--space-1);">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="window.UI.showAlert('access-alert-container', 'success', 'Request approved. Time-bound token generated.');">Approve</button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="window.UI.showAlert('access-alert-container', 'danger', 'Request rejected.');">Reject</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>Cloud-Based Digital Evidence Vault &bull; Zero Permanent Public URLs &bull; Time-Bound Access</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/access-requests.js"></script>
+</body>
+</html>

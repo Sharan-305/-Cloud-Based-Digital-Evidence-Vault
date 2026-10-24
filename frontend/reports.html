@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Evidence Reports — Digital Evidence Vault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/index.html" class="brand" aria-label="Digital Evidence Vault Home">
+        <span class="brand-badge">Vault</span>
+        <span class="brand-title">Digital Evidence Vault</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="/evidence.html" class="nav-link">Evidence Register</a></li>
+          <li><a href="/access-requests.html" class="nav-link">Access Requests</a></li>
+          <li><a href="/audit-logs.html" class="nav-link">Audit Logs</a></li>
+          <li><a href="/reports.html" class="nav-link active" aria-current="page">Reports</a></li>
+          <li><a href="/users.html" class="nav-link">Users</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-nav-panel">
+        <span class="role-pill">INVESTIGATOR</span>
+        <a href="/login.html" class="btn btn-secondary btn-sm">Sign Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Cryptographic Evidence Reports</h1>
+      <p class="page-description">Generate verifiable PDF reports containing metadata, canonical SHA-256 hashes, digital signature status, and chain of custody timelines.</p>
+    </div>
+
+    <div id="report-alert-container"></div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Generate Report Document</h2>
+      </div>
+      <form onsubmit="event.preventDefault(); window.UI.showAlert('report-alert-container', 'info', 'PDF generator module will compile vector report upon Phase 5 activation.');">
+        <div class="grid grid-cols-3">
+          <div class="form-group">
+            <label for="report-evidence-id" class="form-label">Select Evidence Record</label>
+            <select id="report-evidence-id" class="form-control">
+              <option value="EV-2026-0001">EV-2026-0001 — Incident Network Traffic Capture (v1)</option>
+              <option value="EV-2026-0002">EV-2026-0002 — Access Gateway Audit Dump (v1)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="report-version" class="form-label">Version</label>
+            <select id="report-version" class="form-control">
+              <option value="1">v1 (Current Baseline)</option>
+            </select>
+          </div>
+
+          <div style="display: flex; align-items: flex-end;">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Export Signed PDF Report</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Preview Layout -->
+    <div class="card" style="border: 2px dashed var(--color-border); background-color: var(--color-surface-subtle);">
+      <div class="card-header">
+        <h2 class="card-title">PDF Evidence Report Template Preview</h2>
+        <span class="badge badge-info"><span aria-hidden="true">ℹ</span> Report Spec</span>
+      </div>
+      <div style="padding: var(--space-4); background-color: var(--color-surface); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+        <h3 style="margin-bottom: var(--space-2);">DIGITAL EVIDENCE INTEGRITY & CUSTODY REPORT</h3>
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--space-4);">Generated on 2026-10-24 &bull; Classification: Academic Vault Synthetic Reference</p>
+        
+        <div style="margin-bottom: var(--space-4); font-size: var(--font-size-sm);">
+          <p><strong>Evidence ID:</strong> EV-2026-0001</p>
+          <p><strong>Baseline SHA-256 Digest:</strong> <span class="font-mono">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span></p>
+          <p><strong>Manifest Signature:</strong> Valid (Algorithm: Ed25519 &bull; Key ID: vault-ed25519-key-01)</p>
+          <p><strong>Chain-of-Custody Events:</strong> 3 Verified Logged Actions</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>Cloud-Based Digital Evidence Vault &bull; Canonical Export & PDF Engine</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/reports.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidence Register — Digital Evidence Vault</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="header-container">
+      <a href="/index.html" class="brand" aria-label="Digital Evidence Vault Home">
+        <span class="brand-badge">Vault</span>
+        <span class="brand-title">Digital Evidence Vault</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="/dashboard.html" class="nav-link">Dashboard</a></li>
+          <li><a href="/evidence.html" class="nav-link active" aria-current="page">Evidence Register</a></li>
+          <li><a href="/access-requests.html" class="nav-link">Access Requests</a></li>
+          <li><a href="/audit-logs.html" class="nav-link">Audit Logs</a></li>
+          <li><a href="/reports.html" class="nav-link">Reports</a></li>
+          <li><a href="/users.html" class="nav-link">Users</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-nav-panel">
+        <span class="role-pill">INVESTIGATOR</span>
+        <a href="/login.html" class="btn btn-secondary btn-sm">Sign Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="main-content">
+    <div class="page-header" style="flex-direction: row; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-4);">
+      <div>
+        <h1 class="page-title">Evidence Register</h1>
+        <p class="page-description">Search, filter, inspect, and verify stored digital evidence records.</p>
+      </div>
+      <div>
+        <a href="#intake-section" class="btn btn-primary" onclick="document.getElementById('intake-card').scrollIntoView({ behavior: 'smooth' });">+ Add New Evidence</a>
+      </div>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="card" style="padding: var(--space-4);">
+      <form class="grid grid-cols-4" onsubmit="event.preventDefault();" role="search" aria-label="Evidence search filters">
+        <div class="form-group" style="margin-bottom: 0;">
+          <label for="filter-query" class="form-label">Search</label>
+          <input type="search" id="filter-query" class="form-control" placeholder="Evidence ID, Title, Case ID...">
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <label for="filter-category" class="form-label">Category</label>
+          <select id="filter-category" class="form-control">
+            <option value="">All Categories</option>
+            <option value="documents">Documents</option>
+            <option value="images">Images</option>
+            <option value="logs">Logs</option>
+            <option value="forensic_archive">Forensic Archive</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <label for="filter-status" class="form-label">Status</label>
+          <select id="filter-status" class="form-control">
+            <option value="">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="archived">Archived</option>
+          </select>
+        </div>
+        <div style="display: flex; align-items: flex-end; gap: var(--space-2);">
+          <button type="button" class="btn btn-secondary" style="width: 100%;">Filter</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Evidence Table -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Registered Evidence (Synthetic Demo)</h2>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Evidence ID</th>
+              <th scope="col">Title & Case Ref</th>
+              <th scope="col">Category</th>
+              <th scope="col">Version</th>
+              <th scope="col">SHA-256 Digest</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-mono"><strong>EV-2026-0001</strong></td>
+              <td>
+                <div>Incident Network Traffic Capture (Synthetic)</div>
+                <span class="form-help">Ref: CASE-2026-901</span>
+              </td>
+              <td><span class="badge badge-info">logs</span></td>
+              <td>v1</td>
+              <td class="font-mono" title="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855">e3b0c442...</td>
+              <td><span class="badge badge-success"><span aria-hidden="true">✓</span> Active</span></td>
+              <td>
+                <a href="/evidence-details.html?id=EV-2026-0001" class="btn btn-secondary btn-sm">Inspect</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-mono"><strong>EV-2026-0002</strong></td>
+              <td>
+                <div>Access Gateway Audit Dump (Synthetic)</div>
+                <span class="form-help">Ref: CASE-2026-902</span>
+              </td>
+              <td><span class="badge badge-info">documents</span></td>
+              <td>v1</td>
+              <td class="font-mono" title="8750a9da842cecb71578d052606be44d9f7832669e2c60c82fb61b3634032d84">8750a9da...</td>
+              <td><span class="badge badge-success"><span aria-hidden="true">✓</span> Active</span></td>
+              <td>
+                <a href="/evidence-details.html?id=EV-2026-0002" class="btn btn-secondary btn-sm">Inspect</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Evidence Intake Form Section -->
+    <div class="card" id="intake-card">
+      <div class="card-header">
+        <h2 class="card-title">Intake New Evidence (Phase 3 Interface)</h2>
+      </div>
+      <div id="intake-alert-container"></div>
+      <form id="evidence-intake-form" onsubmit="window.EvidenceManager.handleIntakeFormSubmit(event)">
+        <div class="grid grid-cols-2">
+          <div class="form-group">
+            <label for="intake-title" class="form-label">Evidence Title *</label>
+            <input type="text" id="intake-title" class="form-control" required placeholder="e.g. Synthetic Disk Dump 2026">
+          </div>
+          <div class="form-group">
+            <label for="intake-reference" class="form-label">Case / Reference ID *</label>
+            <input type="text" id="intake-reference" class="form-control" required placeholder="e.g. CASE-2026-009">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2">
+          <div class="form-group">
+            <label for="intake-category" class="form-label">Evidence Category *</label>
+            <select id="intake-category" class="form-control" required>
+              <option value="documents">Documents</option>
+              <option value="images">Images</option>
+              <option value="logs">Logs</option>
+              <option value="video">Video</option>
+              <option value="forensic_archive">ZIP / Forensic Archive</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="intake-classification" class="form-label">Security Classification *</label>
+            <select id="intake-classification" class="form-control" required>
+              <option value="internal">Internal</option>
+              <option value="confidential">Confidential</option>
+              <option value="restricted">Restricted</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="intake-file" class="form-label">Select Evidence File (Streamed to Private S3) *</label>
+          <input type="file" id="intake-file" class="form-control" required>
+          <span class="form-help">Max size: 500MB. Supported: Images, PDF, Docs, Logs, Video, ZIP. Never extracted automatically.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="intake-description" class="form-label">Custody & Intake Notes</label>
+          <textarea id="intake-description" class="form-control" rows="3" placeholder="Context, acquisition device, handling instructions..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Process Intake & Calculate SHA-256</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>Cloud-Based Digital Evidence Vault &bull; Register & Multi-Version Catalog</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/evidence.js"></script>
+</body>
+</html>
