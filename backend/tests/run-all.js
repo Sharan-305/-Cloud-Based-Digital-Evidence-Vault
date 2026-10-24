@@ -6,7 +6,8 @@ const testFiles = [
   'tests/auth.test.js',
   'tests/storage.test.js',
   'tests/integrity.test.js',
-  'tests/features.test.js'
+  'tests/features.test.js',
+  'tests/e2e.test.js'
 ];
 
 console.log(`[Test Runner] Running ${testFiles.length} test suites...\n`);
